@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Monitoring dashboard – Verity Proctor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="dashboard" class="md:flex">
+    <a class="skip" href="#main">Skip to content</a>
+    <aside id="side" class="side">
+      <a href="index.html"
+        ><svg aria-hidden="true" viewBox="0 0 24 24">
+          <path
+            d="M12 2 3 6v5c0 5.2 3.8 9.2 9 11 5.2-1.8 9-5.8 9-11V6l-9-4Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          />
+          <path
+            d="m8.5 12 2.2 2.2 4.8-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          /></svg
+        ><span class="lbl">Verity Proctor</span></a
+      >
+      <nav aria-label="Dashboard" class="flex flex-col gap-1">
+        <a href="dashboard.html" aria-current="page"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <rect
+              x="3"
+              y="3"
+              width="8"
+              height="8"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="13"
+              y="3"
+              width="8"
+              height="5"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="13"
+              y="10"
+              width="8"
+              height="11"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="3"
+              y="13"
+              width="8"
+              height="8"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            /></svg
+          ><span class="lbl">Live monitoring</span></a
+        >
+        <a href="#liveGrid"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <circle
+              cx="9"
+              cy="8"
+              r="3.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <path
+              d="M2.5 20c.4-3.6 2.5-5.5 6.5-5.5s6.1 1.9 6.5 5.5M17 5.5a3.5 3.5 0 0 1 0 6.8M18 15c2.2.6 3.4 2.2 3.6 5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            /></svg
+          ><span class="lbl">Candidate sessions</span></a
+        ><a href="leaderboard.html"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <path
+              d="M8 21h8m-4-4v4m-5-17h10v5a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span class="lbl">Live leaderboard</span></a
+        ><a href="exam.html"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <path
+              d="m4 16-.8 4.8L8 20l11.7-11.7a2.8 2.8 0 0 0-4-4L4 16Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linejoin="round"
+            />
+            <path
+              d="m14 6 4 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            /></svg
+          ><span class="lbl">Candidate exam demo</span></a
+        >
+      </nav>
+    </aside>
+    <div class="flex-1 min-w-0">
+      <header
+        class="flex flex-wrap items-center gap-3 p-4 border-b"
+        style="border-color: var(--line)"
+      >
+        <button
+          class="btn"
+          id="sideBtn"
+          aria-label="Toggle sidebar"
+          aria-controls="side"
+        >
+          ☰
+        </button>
+        <div class="mr-auto">
+          <p class="page-kicker">EXAMINER</p>
+          <h1 class="page-title text-2xl font-bold">Live monitoring</h1>
+          <p class="mut text-sm">
+            Open the exam and this page in two tabs in the same browser.
+          </p>
+        </div>
+        <span class="badge ok privacy-badge"
+          >Live video needs candidate consent</span
+        ><button class="btn" id="pause" aria-pressed="false">
+          Pause live updates</button
+        ><button class="btn" id="export" type="button">Export report</button
+        ><button
+          class="btn"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Toggle dark mode"
+        >
+          ◐
+        </button>
+      </header>
+      <main id="main" class="p-4 lg:p-8 space-y-6">
+        <section class="card" aria-labelledby="create-test-heading">
+          <div class="flex flex-wrap justify-between gap-3">
+            <div>
+              <h2 id="create-test-heading" class="text-xl font-bold">
+                Create a test
+              </h2>
+              <p class="mut text-sm mt-1">
+                Create a test ID for candidates to enter on the start page.
+              </p>
+            </div>
+          </div>
+          <form id="createTestForm" class="flex flex-wrap items-end gap-3 mt-4">
+            <div class="flex-1 min-w-[14rem]">
+              <label for="testName" class="font-bold text-sm">Test name</label
+              ><input
+                id="testName"
+                class="input mt-1"
+                maxlength="80"
+                required
+                placeholder="e.g. Biology midterm"
+              />
+            </div>
+            <div class="w-40">
+              <label for="testDuration" class="font-bold text-sm"
+                >Duration (minutes)</label
+              ><input
+                id="testDuration"
+                class="input mt-1"
+                type="number"
+                min="1"
+                max="240"
+                value="30"
+                required
+              />
+            </div>
+            <button class="btn btn-p" type="submit">Create test</button>
+          </form>
+          <p id="createdTest" class="mut text-sm mt-3" role="status"></p>
+        </section>
+        <section
+          aria-label="Statistics"
+          id="stats"
+          class="grid grid-cols-2 lg:grid-cols-5 gap-4"
+        ></section>
+        <section class="card" aria-labelledby="h-c">
+          <h2 id="h-c" class="text-xl font-bold mb-2">Candidates</h2>
+          <p class="mut text-sm mb-3">
+            Scroll sideways and choose a candidate. Their exam details appear
+            below.
+          </p>
+          <div
+            id="liveGrid"
+            class="candidate-strip"
+            role="region"
+            aria-label="Live candidates, scroll horizontally"
+            tabindex="0"
+            aria-live="polite"
+          ></div>
+        </section>
+        <section
+          id="selectedPanel"
+          class="card min-h-64"
+          aria-live="polite"
+          aria-label="Selected candidate details"
+        >
+          <p class="font-bold">Choose a candidate</p>
+          <p class="mut text-sm mt-2">
+            Their exam details and alerts will appear here.
+          </p>
+        </section>
+        <details class="card">
+          <summary class="font-bold cursor-pointer">
+            Demo data
+            <span class="mut text-sm font-normal"
+              >(sample records, not live candidates)</span
+            >
+          </summary>
+          <div class="pt-4">
+            <p class="mut text-sm mb-3">
+              Illustrative data only. These records are not connected to
+              candidates.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-4">
+              <div class="flex-1 min-w-[12rem]">
+                <label for="search" class="sr-only">Search candidates</label
+                ><input
+                  id="search"
+                  type="search"
+                  class="input"
+                  placeholder="Search by name"
+                />
+              </div>
+              <div>
+                <label for="statusF" class="sr-only">Filter by status</label
+                ><select id="statusF" class="input">
+                  <option value="all">All statuses</option>
+                  <option>Monitoring</option>
+                  <option>Alert</option>
+                  <option>Offline</option>
+                </select>
+              </div>
+            </div>
+            <div id="grid" class="space-y-3" aria-live="polite"></div>
+          </div>
+        </details>
+      </main>
+    </div>
+    <script src="mockData.js"></script>
+    <script src="main.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

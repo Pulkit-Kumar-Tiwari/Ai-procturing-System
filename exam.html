@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Exam – Verity Proctor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div id="net" role="alert" class="bad text-center p-2 font-bold" hidden>
+      ✕ Internet connection unavailable. Your answers remain in this browser.
+      Reconnect to continue online features.
+    </div>
+    <header
+      class="card rounded-none flex flex-wrap items-center justify-between gap-3 py-3"
+    >
+      <div>
+        <p class="font-bold">
+          <span id="examTitle">Fundamentals of Computing</span> ·
+          <span id="examId"></span>
+        </p>
+        <p class="mut text-sm">Candidate: <span id="who"></span></p>
+      </div>
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="beacon" id="beaconHdr" hidden><i></i>EXAM IN PROGRESS</span
+        ><span class="badge ok" id="secureHdr">🔒 Secure connection</span>
+        <p>
+          Time left:
+          <time id="timer" class="font-bold text-xl" role="timer">30:00</time>
+        </p>
+        <button
+          class="btn"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Toggle dark mode"
+        >
+          ◐
+        </button>
+      </div>
+    </header>
+    <main id="main" class="max-w-6xl mx-auto px-4 py-6">
+      <!-- STAGE 1: readiness check -->
+      <section id="stageCheck" aria-labelledby="h-check">
+        <h1 id="h-check" class="page-title text-3xl font-bold">
+          Check your setup
+        </h1>
+        <p class="mut mt-1">
+          The camera check is your choice. This demo does not use your
+          microphone.
+        </p>
+        <p class="card mt-4 text-sm">
+          <strong>Your privacy:</strong> Face checks run on this device. Camera
+          video is not saved or sent to a server. You can separately allow an
+          examiner tab in this browser to view your live video during the exam.
+          Internet access is checked before you start. Camera access needs HTTPS
+          or localhost.
+        </p>
+        <section
+          class="exam-rules card mt-5"
+          aria-labelledby="exam-rules-heading"
+        >
+          <div class="exam-rules-heading">
+            <div>
+              <p class="page-kicker">CANDIDATE INSTRUCTIONS</p>
+              <h2 id="exam-rules-heading" class="text-xl font-bold mt-1">
+                Strict exam-day rules
+              </h2>
+            </div>
+            <span class="badge warn">Read before starting</span>
+          </div>
+          <p class="mut text-sm mt-2">
+            JEE-style demo instructions. These are not official NTA/JEE rules;
+            follow the instructions issued for your actual examination.
+          </p>
+          <ol class="exam-rules-list mt-4">
+            <li>
+              <strong>Remain present:</strong> Stay at your desk and in camera
+              view throughout the test. Keep your face visible, lighting
+              adequate, and the room clear of other people.
+            </li>
+            <li>
+              <strong>No assistance:</strong> Do not communicate with anyone,
+              receive help, or use unauthorized notes, books, devices, or tools.
+              Use a calculator only if your examiner explicitly permits it.
+            </li>
+            <li>
+              <strong>Stay on the exam:</strong> Do not switch tabs or apps,
+              minimize the exam, refresh the page, or navigate away. Focus
+              changes may be recorded; closing or leaving the exam before
+              completion marks the session as left.
+            </li>
+            <li>
+              <strong>Protect exam content:</strong> Do not copy, photograph,
+              record, publish, or share questions or answers.
+            </li>
+            <li>
+              <strong>Keep the setup ready:</strong> Use a stable internet
+              connection and power source. Do not cover or disconnect the camera
+              while the exam is running.
+            </li>
+            <li>
+              <strong>Follow examiner directions:</strong> Respond to permitted
+              on-screen requests. Camera video sharing is separate from the
+              on-device check and is shared only with your consent. This demo
+              does not use your microphone.
+            </li>
+          </ol>
+          <label class="exam-rules-ack mt-4"
+            ><input
+              type="checkbox"
+              id="rulesAcknowledged"
+              class="w-5 h-5"
+            /><span
+              >I have read these instructions and agree to follow the exam
+              rules.</span
+            ></label
+          >
+        </section>
+        <div class="grid lg:grid-cols-3 gap-6 mt-6">
+          <div class="card lg:col-span-2 space-y-4">
+            <div id="readyCam" class="cam scan-preview">
+              <video
+                id="readyVideo"
+                autoplay
+                muted
+                playsinline
+                aria-label="Live camera preview"
+                hidden
+              ></video
+              ><canvas id="readyOverlay" aria-hidden="true"></canvas>
+              <div class="camfb">
+                Camera preview starts only after you consent and run the check.
+              </div>
+              <span id="readyScanLabel" class="scan-label" aria-live="polite"
+                >SCANNER STANDBY</span
+              >
+            </div>
+            <div id="checkList" aria-live="polite"></div>
+          </div>
+          <div class="card h-fit space-y-4">
+            <p id="checkSummary" aria-live="polite" class="font-bold">
+              Read and acknowledge the exam rules, then consent to the on-device
+              camera check.
+            </p>
+            <label class="flex gap-2 items-start text-sm"
+              ><input
+                type="checkbox"
+                id="monitorConsent"
+                class="w-5 h-5 mt-0.5"
+              /><span
+                >I agree to a camera check on this device. Audio is not
+                used.</span
+              ></label
+            >
+            <label class="flex gap-2 items-start text-sm"
+              ><input
+                type="checkbox"
+                id="videoShareConsent"
+                class="w-5 h-5 mt-0.5"
+              /><span
+                >Allow the examiner to watch my live camera during this exam in
+                another tab on this browser. I can stop sharing at any
+                time.</span
+              ></label
+            >
+            <button id="runCheck" class="btn btn-p w-full" disabled>
+              Check camera and internet</button
+            ><button id="goExam" class="btn w-full" disabled>Start exam</button>
+          </div>
+        </div>
+      </section>
+      <!-- STAGE 2: exam -->
+      <section id="stageExam" hidden aria-label="Exam">
+        <div class="grid lg:grid-cols-[1fr_20rem] gap-6">
+          <div class="card">
+            <p class="mut font-bold" id="qCount"></p>
+            <div id="qBox" class="mt-2"></div>
+            <div class="flex flex-wrap gap-3 mt-6 exam-actions">
+              <button id="prev" class="btn">Previous</button
+              ><button id="next" class="btn btn-p">Next</button
+              ><button id="mark" class="btn" aria-pressed="false">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path
+                    d="M5 21V4m1 1h11l-2 4 2 4H6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  /></svg
+                >Mark for review</button
+              ><button id="submit" class="btn ml-auto">Finish demo</button>
+            </div>
+            <nav aria-label="Question navigator" class="mt-6">
+              <div id="nav" class="flex flex-wrap gap-3"></div>
+              <p class="mut text-sm mt-3">
+                Filled = answered · Flag outline = marked for review · Outlined
+                = current · Plain = unanswered
+              </p>
+            </nav>
+          </div>
+          <aside class="card space-y-4" aria-label="Camera check">
+            <p class="beacon"><i></i>CAMERA CHECK ON THIS DEVICE</p>
+            <div id="cam" class="cam scan-preview">
+              <video
+                id="examVideo"
+                autoplay
+                muted
+                playsinline
+                hidden
+                aria-label="Your live camera preview"
+              ></video
+              ><canvas id="examOverlay" aria-hidden="true"></canvas>
+              <div class="camfb">Live camera preview unavailable.</div>
+              <span id="examScanLabel" class="scan-label" aria-live="polite"
+                >AI scanner starting…</span
+              >
+            </div>
+            <div>
+              <p class="font-bold">What the camera checks</p>
+              <p class="mut text-sm">
+                It checks whether a face is visible. It does not identify or
+                score you.
+              </p>
+            </div>
+            <div id="videoShareStatus" class="help-request">
+              <p id="videoShareTitle" class="font-bold">
+                Live video sharing is off
+              </p>
+              <p id="videoShareMessage" class="mut text-sm mt-1">
+                The examiner can see your camera status, but not your video.
+              </p>
+              <button id="stopVideoShare" class="btn mt-2" type="button" hidden>
+                Stop sharing live video
+              </button>
+            </div>
+            <ul class="text-sm space-y-1">
+              <li>Camera: <span id="stCam"></span></li>
+              <li>Microphone: <span class="badge off">Not used</span></li>
+              <li>Network: <span id="stNet"></span></li>
+              <li>
+                On-device AI:
+                <span id="stAI" class="badge warn">Not started</span>
+              </li>
+              <li>Faces visible: <strong id="faceCount">—</strong></li>
+            </ul>
+            <div>
+              <h2 class="font-bold">Alerts</h2>
+              <p class="mut text-sm">
+                Alerts may be wrong. An examiner should check them first.
+              </p>
+              <div id="evList" class="mt-2">
+                <p class="mut text-sm">No alerts yet.</p>
+              </div>
+            </div>
+            <div class="help-request">
+              <h2 class="font-bold">Need help?</h2>
+              <p class="mut text-sm">
+                Send a note to the examiner tab in this browser.
+              </p>
+              <label class="sr-only" for="helpText"
+                >Message for the examiner</label
+              ><textarea
+                id="helpText"
+                class="input mt-2"
+                rows="2"
+                maxlength="240"
+                placeholder="Write a short message"
+              ></textarea
+              ><button id="requestHelp" class="btn w-full mt-2">
+                Send message
+              </button>
+              <p id="helpStatus" class="mut text-sm mt-2" role="status"></p>
+            </div>
+            <div
+              id="cameraRequestPanel"
+              class="help-request"
+              role="alert"
+              hidden
+            >
+              <h2 class="font-bold">Examiner camera request</h2>
+              <p id="cameraRequestMessage" class="mut text-sm mt-1">
+                The examiner is asking to view your live camera.
+              </p>
+              <div class="flex gap-2 mt-3">
+                <button id="allowCameraRequest" class="btn btn-p" type="button">
+                  Allow live camera</button
+                ><button id="declineCameraRequest" class="btn" type="button">
+                  Decline
+                </button>
+              </div>
+            </div>
+            <p class="mut text-xs">
+              Face checks run on this device. Live video is shown only if you
+              allowed it above. Audio is not shared.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <!-- STAGE 3: completion -->
+      <section
+        id="stageDone"
+        hidden
+        aria-labelledby="h-done"
+        class="max-w-2xl mx-auto"
+      >
+        <div class="card text-center">
+          <p class="text-4xl t-ok" aria-hidden="true">✓</p>
+          <h1
+            id="h-done"
+            class="page-title text-3xl font-bold mt-2"
+            tabindex="-1"
+          >
+            Demo exam complete
+          </h1>
+          <dl class="grid grid-cols-2 gap-4 mt-6 text-left">
+            <div class="card">
+              <dt class="mut text-sm">Completion time</dt>
+              <dd id="dTime" class="font-bold"></dd>
+            </div>
+            <div class="card">
+              <dt class="mut text-sm">Questions answered</dt>
+              <dd id="dAns" class="font-bold"></dd>
+            </div>
+            <div class="card">
+              <dt class="mut text-sm">Unanswered</dt>
+              <dd id="dUn" class="font-bold"></dd>
+            </div>
+            <div class="card">
+              <dt class="mut text-sm">Session status</dt>
+              <dd id="doneStatus" class="font-bold">
+                Finished in this browser
+              </dd>
+            </div>
+          </dl>
+          <div class="mt-6"><p id="dMsg" class="font-bold"></p></div>
+          <details class="text-left mt-6">
+            <summary class="btn inline-flex">View summary</summary>
+            <div id="dLog" class="mt-4"></div>
+          </details>
+          <a href="index.html" class="btn btn-p mt-6">Return to dashboard</a>
+        </div>
+      </section>
+    </main>
+    <dialog id="dlg" aria-labelledby="dlgT">
+      <h2 id="dlgT" class="text-xl font-bold"></h2>
+      <p id="dlgP" class="mt-2 mut"></p>
+      <p id="dlgErr" class="err" role="alert"></p>
+      <div class="flex justify-end gap-3 mt-5">
+        <button id="dlgNo" class="btn">Keep working</button
+        ><button id="dlgYes" class="btn btn-p">Finish demo</button>
+      </div>
+    </dialog>
+    <script src="mockData.js"></script>
+    <script src="main.js"></script>
+    <script src="exam.js"></script>
+  </body>
+</html>

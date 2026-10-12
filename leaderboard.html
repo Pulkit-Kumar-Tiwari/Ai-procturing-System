@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Live leaderboard – Verity Proctor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="leaderboard" class="md:flex">
+    <a class="skip" href="#main">Skip to content</a>
+    <aside id="side" class="side">
+      <a href="index.html"
+        ><svg aria-hidden="true" viewBox="0 0 24 24">
+          <path
+            d="M12 2 3 6v5c0 5.2 3.8 9.2 9 11 5.2-1.8 9-5.8 9-11V6l-9-4Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          />
+          <path
+            d="m8.5 12 2.2 2.2 4.8-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          /></svg
+        ><span class="lbl">Verity Proctor</span></a
+      >
+      <nav aria-label="Dashboard" class="flex flex-col gap-1">
+        <a href="dashboard.html"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <rect
+              x="3"
+              y="3"
+              width="8"
+              height="8"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="13"
+              y="3"
+              width="8"
+              height="5"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="13"
+              y="10"
+              width="8"
+              height="11"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <rect
+              x="3"
+              y="13"
+              width="8"
+              height="8"
+              rx="1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            /></svg
+          ><span class="lbl">Live monitoring</span></a
+        >
+        <a href="leaderboard.html" aria-current="page"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <path
+              d="M8 21h8m-4-4v4m-5-17h10v5a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span class="lbl">Live leaderboard</span></a
+        >
+        <a href="exam.html"
+          ><svg aria-hidden="true" viewBox="0 0 24 24">
+            <path
+              d="m4 16-.8 4.8L8 20l11.7-11.7a2.8 2.8 0 0 0-4-4L4 16Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linejoin="round"
+            />
+            <path
+              d="m14 6 4 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            /></svg
+          ><span class="lbl">Candidate exam demo</span></a
+        >
+      </nav>
+    </aside>
+    <div class="flex-1 min-w-0">
+      <header
+        class="flex flex-wrap items-center gap-3 p-4 border-b"
+        style="border-color: var(--line)"
+      >
+        <button
+          class="btn"
+          id="sideBtn"
+          aria-label="Toggle sidebar"
+          aria-controls="side"
+        >
+          ☰
+        </button>
+        <div class="mr-auto">
+          <p class="page-kicker">EXAMINER</p>
+          <h1 class="page-title text-2xl font-bold">Live leaderboard</h1>
+          <p class="mut text-sm">
+            Candidates are ranked using monitoring and exam-progress signals.
+          </p>
+        </div>
+        <a class="btn" href="dashboard.html">Live monitoring</a>
+        <button
+          class="btn"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Toggle dark mode"
+        >
+          ◐
+        </button>
+      </header>
+      <main id="main" class="p-4 lg:p-8 space-y-6">
+        <section
+          id="leaderboardStats"
+          class="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          aria-label="Leaderboard summary"
+        ></section>
+        <section class="card" aria-labelledby="leaderboard-heading">
+          <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+            <div>
+              <h2 id="leaderboard-heading" class="text-xl font-bold">
+                Candidate rankings
+              </h2>
+              <p class="mut text-sm mt-1">
+                Rank index: 30% monitoring score, 40% exam progress, 30%
+                open-alert clearance.
+              </p>
+            </div>
+            <p id="lastUpdated" class="mut text-sm">
+              Waiting for candidate sessions…
+            </p>
+          </div>
+          <p class="leaderboard-note mb-4">
+            Monitoring score is an estimated signal score, not an exam grade or
+            proof of misconduct. Camera consent and network status are shown for
+            context and never reduce a candidate’s rank. Only live/recent
+            sessions shared in this browser are listed; sample records are
+            excluded.
+          </p>
+          <div class="leaderboard-table-wrap">
+            <table class="leaderboard-table">
+              <caption class="sr-only">
+                Live candidate rankings and exam monitoring statistics
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Rank index</th>
+                  <th scope="col">Candidate</th>
+                  <th scope="col">Monitoring score</th>
+                  <th scope="col">Exam progress</th>
+                  <th scope="col">Open alerts</th>
+                  <th scope="col">Camera / face check</th>
+                  <th scope="col">Network</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Last update</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="main.js"></script>
+    <script src="leaderboard.js"></script>
+  </body>
+</html>

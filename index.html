@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f2f0e9" />
+    <meta
+      name="description"
+      content="An online exam demo with optional camera checks and a clear candidate and examiner view."
+    />
+    <title>Verity — Online exam demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="landing">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header editorial-header">
+      <nav aria-label="Main" class="editorial-nav max-w-6xl mx-auto px-4">
+        <a class="wordmark" href="index.html" aria-label="Verity home"
+          ><span class="wordmark-mark" aria-hidden="true">v.</span
+          ><span
+            >verity<span class="wordmark-reg"> / EXAMINATIONS</span></span
+          ></a
+        >
+        <button
+          class="btn editorial-menu md:hidden"
+          data-toggle="menu"
+          aria-expanded="false"
+          aria-controls="menu"
+        >
+          Menu <span aria-hidden="true">☰</span>
+        </button>
+        <ul id="menu" class="hidden md:flex editorial-menu-list">
+          <li><a class="nav-link" href="#approach">How it works</a></li>
+          <li><a class="nav-link" href="#experience">What to expect</a></li>
+          <li><a class="nav-link" href="#access">Start exam</a></li>
+          <li>
+            <a class="nav-portal" href="dashboard.html"
+              >Examiner view <span aria-hidden="true">↗</span></a
+            >
+          </li>
+          <li>
+            <button
+              class="btn theme-button editorial-theme"
+              data-theme-toggle
+              aria-pressed="false"
+              aria-label="Toggle dark mode"
+            >
+              ◐
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="editorial-hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="issue-label"><span></span> ONLINE EXAM DEMO</p>
+            <h1 class="page-title">
+              A clear, fair<br />way to take<br /><em>an exam.</em>
+            </h1>
+            <p class="hero-description">
+              Check your camera before you begin. You choose whether the
+              examiner can watch your live video.
+            </p>
+            <div class="hero-actions">
+              <a class="editorial-cta" href="#access"
+                >Start here <span aria-hidden="true">↗</span></a
+              >
+              <a class="editorial-secondary" href="dashboard.html"
+                >Examiner view <span aria-hidden="true">→</span></a
+              >
+            </div>
+            <div class="hero-footnote">
+              <span class="handdrawn-check" aria-hidden="true">✓</span
+              ><span
+                ><strong>Your camera is optional.</strong><br />Nothing is sent
+                to an examiner as video.</span
+              >
+            </div>
+          </div>
+
+          <figure class="product-hero">
+            <div class="product-preview">
+              <div class="product-top">
+                <span class="product-mark">v.</span><span>BEFORE THE EXAM</span
+                ><span class="product-time">30:00</span>
+              </div>
+              <div class="product-body">
+                <div class="product-camera">
+                  <span class="product-scan-label"
+                    ><i></i> EXAMPLE IMAGE · CAMERA CHECK</span
+                  >
+                  <img
+                    class="scan-face-image"
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;crop=faces&amp;w=600&amp;q=85"
+                    alt="Example portrait illustrating the camera check; this is not a live camera image"
+                    fetchpriority="high"
+                  />
+                  <span class="product-scan-box" aria-hidden="true"></span
+                  ><span class="product-scan-line" aria-hidden="true"></span
+                  ><span class="product-frame-copy"
+                    >Example image · your video stays on your device</span
+                  >
+                </div>
+                <div class="product-checklist">
+                  <p class="product-overline">QUICK CHECK</p>
+                  <h2>Before you begin</h2>
+                  <p>
+                    <span class="product-check">✓</span> Internet
+                    <strong>Ready</strong>
+                  </p>
+                  <p>
+                    <span class="product-check">✓</span> Camera
+                    <strong>Your choice</strong>
+                  </p>
+                  <p>
+                    <span class="product-pending">·</span> Face check
+                    <strong>On this device</strong>
+                  </p>
+                  <div class="product-privacy">
+                    Live video is shared only with your consent.
+                  </div>
+                </div>
+              </div>
+              <div class="product-caption">
+                <span>EXAM SCREEN PREVIEW</span
+                ><span>Live view needs your consent</span>
+              </div>
+            </div>
+            <div class="product-float-chip">
+              <span class="product-check">✓</span> You control live video
+            </div>
+          </figure>
+        </div>
+        <div class="hero-baseline">
+          <span>FOR CANDIDATES AND EXAMINERS</span
+          ><a href="#approach"
+            >See how it works <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+
+      <section class="principle-band" aria-label="Our principles">
+        <div class="principle-inner">
+          <span>YOUR PRIVACY</span>
+          <p>
+            You control live video.
+            <em>The examiner can watch only if you allow it.</em>
+          </p>
+          <span class="principle-seal" aria-hidden="true">V</span>
+        </div>
+      </section>
+
+      <section id="approach" class="approach-section">
+        <div class="approach-layout">
+          <div class="approach-intro">
+            <p class="section-kicker">HOW IT WORKS</p>
+            <h2>Simple checks.<br /><em>Human review.</em></h2>
+          </div>
+          <div class="approach-copy">
+            <p>
+              The camera check runs on your device. It looks for a face; it does
+              not identify you. You choose whether an examiner tab in this
+              browser can watch your video.
+            </p>
+            <p>
+              This demo shares exam status and possible alerts between tabs in
+              the same browser. It does not connect to a remote examiner. Alerts
+              can be wrong, so an examiner should review them before acting.
+            </p>
+            <a class="editorial-inline-link" href="dashboard.html"
+              >Open the examiner view <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+        <div class="margin-rule" aria-hidden="true"><span></span></div>
+        <div id="experience" class="experience-row">
+          <article class="experience-item">
+            <span class="experience-no">01</span>
+            <div>
+              <h3>Check first</h3>
+              <p>
+                Check your internet, camera, and lighting before you begin. The
+                demo does not use your microphone.
+              </p>
+            </div>
+            <span class="experience-glyph" aria-hidden="true">1</span>
+          </article>
+          <article class="experience-item">
+            <span class="experience-no">02</span>
+            <div>
+              <h3>Take the exam</h3>
+              <p>
+                Your timer, answers, and question list stay together on the
+                screen.
+              </p>
+            </div>
+            <span class="experience-glyph" aria-hidden="true">2</span>
+          </article>
+          <article class="experience-item">
+            <span class="experience-no">03</span>
+            <div>
+              <h3>Review alerts</h3>
+              <p>
+                Alerts are only suggestions to check. This demo does not connect
+                to a remote examiner or server.
+              </p>
+            </div>
+            <span class="experience-glyph" aria-hidden="true">3</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="access" class="access-editorial">
+        <div class="access-heading">
+          <p class="section-kicker">CANDIDATE</p>
+          <h2>Start your<br /><em>exam here.</em></h2>
+          <p>
+            Enter the details from your exam invitation. You can check your
+            setup before the exam starts.
+          </p>
+          <div class="access-aside-note">
+            <span aria-hidden="true">↗</span
+            ><span
+              ><strong>Are you an examiner?</strong><br /><a
+                href="dashboard.html"
+                >Open the examiner view</a
+              ></span
+            >
+          </div>
+        </div>
+        <div class="access-paper">
+          <div class="form-heading">
+            <span class="form-overline">EXAM DETAILS</span
+            ><span class="form-lock" aria-hidden="true">⌑</span>
+          </div>
+          <h3>Enter your details</h3>
+          <p class="form-description">
+            Enter the test ID given by your examiner and any code with 4 or more
+            characters. The default demo test is <code>EX-2026</code>.
+          </p>
+          <form id="accessForm" class="editorial-form" novalidate>
+            <div class="editorial-field">
+              <label for="name">Full name</label
+              ><input
+                id="name"
+                class="input"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+                aria-describedby="e-name"
+              />
+              <p id="e-name" class="err" role="alert"></p>
+            </div>
+            <div class="editorial-field">
+              <label for="exam">Exam ID</label
+              ><input
+                id="exam"
+                class="input"
+                placeholder="EX-2026"
+                required
+                aria-describedby="e-exam"
+              />
+              <p id="e-exam" class="err" role="alert"></p>
+            </div>
+            <div class="editorial-field">
+              <label for="code">Access code</label>
+              <div class="password-wrap">
+                <input
+                  id="code"
+                  type="password"
+                  class="input"
+                  autocomplete="off"
+                  placeholder="4 or more characters"
+                  required
+                  aria-describedby="e-code"
+                /><button
+                  class="password-toggle"
+                  id="toggleCode"
+                  type="button"
+                  aria-label="Show access code"
+                  aria-pressed="false"
+                >
+                  SHOW
+                </button>
+              </div>
+              <p id="e-code" class="err" role="alert"></p>
+            </div>
+            <div class="editorial-field">
+              <label for="inst"
+                >School or institution <span>OPTIONAL</span></label
+              ><input
+                id="inst"
+                class="input"
+                autocomplete="organization"
+                placeholder="School or institution"
+              />
+            </div>
+            <p class="editorial-assurance">
+              <span aria-hidden="true">✓</span> Camera use and live video
+              sharing are your choice. Video is not saved or sent to a server.
+            </p>
+            <button class="editorial-cta form-submit" type="submit">
+              Check my setup <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="editorial-footer">
+      <div class="footer-main">
+        <a class="wordmark" href="index.html"
+          ><span class="wordmark-mark" aria-hidden="true">v.</span
+          ><span>verity<span class="wordmark-reg"> / EXAMS</span></span></a
+        >
+        <p>An exam demo that keeps your video private.</p>
+        <span class="footer-classification"
+          >DEMO SITE<br />NO SCHOOL OR SERVER CONNECTED</span
+        >
+      </div>
+      <div class="footer-bottom">
+        <span>VERITY · EXAM DEMO</span
+        ><span
+          >Session details are shared only between tabs in this browser.</span
+        ><a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+    <script src="mockData.js"></script>
+    <script src="main.js"></script>
+    <script>
+      const rules = {
+        name: (v) => (v.trim() ? "" : "Enter your full name."),
+        exam: (v) =>
+          examCatalog.find(v)
+            ? ""
+            : "Enter a test ID created by your examiner, or use EX-2026.",
+        code: (v) =>
+          v.trim().length >= 4
+            ? ""
+            : "Access code must be at least 4 characters.",
+      };
+      $("#toggleCode").addEventListener("click", (e) => {
+        const input = $("#code"),
+          visible = input.type === "password";
+        input.type = visible ? "text" : "password";
+        e.currentTarget.textContent = visible ? "HIDE" : "SHOW";
+        e.currentTarget.setAttribute(
+          "aria-label",
+          visible ? "Hide access code" : "Show access code",
+        );
+        e.currentTarget.setAttribute("aria-pressed", visible);
+      });
+      $("#accessForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        let first = null;
+        for (const k in rules) {
+          const el = $("#" + k),
+            m = rules[k](el.value);
+          $("#e-" + k).textContent = m;
+          el.setAttribute("aria-invalid", !!m);
+          if (m && !first) first = el;
+        }
+        if (first) return first.focus();
+        sessionStorage.setItem(
+          "candidate",
+          JSON.stringify({
+            name: $("#name").value.trim(),
+            exam: $("#exam").value.trim().toUpperCase(),
+          }),
+        );
+        location.href = "exam.html";
+      });
+    </script>
+  </body>
+</html>
